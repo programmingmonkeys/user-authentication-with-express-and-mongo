@@ -1,0 +1,38 @@
+{
+  "name": "user-authentication-with-express-and-mongo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "private": true,
+  "scripts": {
+    "importEXT": "if [ -f vscode-extensions.txt ]; then cat vscode-extensions.txt | xargs -n 1 code --install-extension; fi",
+    "exportEXT": "code --list-extensions > vscode-extensions.txt",
+    "dev": "NODE_ENV=development nodemon index.js",
+    "prod": "NODE_ENV=production nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/codingChewie/user-authentication-with-express-and-mongo.git"
+  },
+  "author": "codingChewie",
+  "bugs": {
+    "url": "https://github.com/codingChewie/user-authentication-with-express-and-mongo/issues"
+  },
+  "homepage": "https://github.com/codingChewie/user-authentication-with-express-and-mongo#readme",
+  "devDependencies": {
+    "eslint": "^6.4.0",
+    "eslint-config-airbnb": "^18.0.1",
+    "eslint-config-prettier": "^6.3.0",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-node": "^10.0.0",
+    "eslint-plugin-prettier": "^3.1.1",
+    "eslint-plugin-react": "^7.14.3",
+    "nodemon": "^1.19.2",
+    "prettier": "^1.18.2"
+  },
+  "engines": {
+    "node": "^10"
+  }
+}
