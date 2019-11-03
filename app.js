@@ -12,7 +12,7 @@ app.use(express.static(`${__dirname}/public`))
 
 // view engine setup
 app.set('view engine', 'pug')
-app.set('views', path.join(`${__dirname}/public`))
+app.set('views', path.join(__dirname, '/views'))
 
 // include routes
 const routes = require('./routes/index')
