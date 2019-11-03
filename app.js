@@ -8,6 +8,7 @@ const app = express()
 mongoose.connect('mongodb://localhost:27017/bookworm', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
+  useCreateIndex: true,
 })
 const db = mongoose.connection
 db.on('error', console.error.bind(console, 'connection error:'))
