@@ -5,14 +5,7 @@ const mid = require('../middleware/index')
 const router = express.Router()
 
 // GET /profile
-router.get('/profile', (req, res, next) => {
-  if (!req.session.userId) {
-    const err = new Error('Email and password are required')
-    err.status = 403
-
-    return next(err)
-  }
-
+router.get('/profile', mid.requiresLogin, (req, res, next) => {
   User.findById(req.session.userId).exec((err, user) => {
     if (err) return next(err)
 
