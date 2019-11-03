@@ -35,10 +35,10 @@ UserSchema.statics.authenticate = function(email, password, callback) {
       return callback(err)
     }
 
-    bcrypt.compare(password, user.password, (error, result) => {
+    bcrypt.compare(password, user.password, (err, result) => {
       if (result === true) return callback(null, user)
 
-      return callback()
+      return callback(err)
     })
   })
 }

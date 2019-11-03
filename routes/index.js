@@ -10,7 +10,25 @@ router.get('/login', (req, res, next) => {
 
 // POST /login
 router.post('/login', (req, res, next) => {
-  return res.send('logged')
+  let err
+
+  if (!req.body.email && !req.body.password) {
+    err = new Error('Email and password are required')
+    err.status = 400
+    return next(err)
+  }
+
+  User.authenticate(req.body.email, req.body.password, (err, user) => {
+    if (err || !user) {
+      err = new Error('Wrong email or password')
+      err.status = 401
+      return next(err)
+    }
+
+    req.session.userId = user._id
+    console.log(req.session)
+    return res.redirect('profile')
+  })
 })
 
 // GET /register
@@ -40,6 +58,7 @@ router.post('/register', async (req, res, next) => {
     // use schema's create method to insert
     try {
       await User.create(userData)
+      req.session.userId = user._id
       return res.redirect('/profile')
     } catch (error) {
       return next(error)
