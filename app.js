@@ -1,7 +1,16 @@
 const path = require('path')
 const express = require('express')
+const mongoose = require('mongoose')
 
 const app = express()
+
+// mongodb connection
+mongoose.connect('mongodb://localhost:27017/bookworm', {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+})
+const db = mongoose.connection
+db.on('error', console.error.bind(console, 'connection error:'))
 
 // parse incoming requests
 app.use(express.json())
