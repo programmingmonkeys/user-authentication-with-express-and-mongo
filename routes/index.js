@@ -23,6 +23,15 @@ router.get('/profile', (req, res, next) => {
   })
 })
 
+// GET /logout
+router.get('/logout', (req, res, next) => {
+  if (req.session)
+    req.session.destroy((err) => {
+      if (err) return next(err)
+      return res.redirect('/')
+    })
+})
+
 // GET /login
 router.get('/login', (req, res, next) => {
   return res.render('login', { title: 'Log In' })
