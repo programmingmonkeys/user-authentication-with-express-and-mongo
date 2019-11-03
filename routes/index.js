@@ -3,6 +3,26 @@ const User = require('../models/User')
 
 const router = express.Router()
 
+// GET /profile
+router.get('/profile', (req, res, next) => {
+  if (!req.session.userId) {
+    const err = new Error('Email and password are required')
+    err.status = 403
+
+    return next(err)
+  }
+
+  User.findById(req.session.userId).exec((err, user) => {
+    if (err) return next(err)
+
+    return res.render('profile', {
+      title: 'Profile',
+      name: user.name,
+      favorite: user.favoriteBook,
+    })
+  })
+})
+
 // GET /login
 router.get('/login', (req, res, next) => {
   return res.render('login', { title: 'Log In' })
@@ -58,6 +78,7 @@ router.post('/register', async (req, res, next) => {
     // use schema's create method to insert
     try {
       await User.create(userData)
+      // eslint-disable-next-line no-undef
       req.session.userId = user._id
       return res.redirect('/profile')
     } catch (error) {
