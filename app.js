@@ -1,8 +1,18 @@
 const path = require('path')
 const express = require('express')
 const mongoose = require('mongoose')
+const session = require('express-session')
 
 const app = express()
+
+// use sessions for tracking logins
+app.use(
+  session({
+    secret: 'learning soemthing',
+    resave: true,
+    saveUninitialized: false,
+  }),
+)
 
 // mongodb connection
 mongoose.connect('mongodb://localhost:27017/bookworm', {
