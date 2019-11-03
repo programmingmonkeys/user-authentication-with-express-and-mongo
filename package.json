@@ -2,14 +2,13 @@
   "name": "user-authentication-with-express-and-mongo",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "app.js",
   "private": true,
   "scripts": {
     "importEXT": "if [ -f vscode-extensions.txt ]; then cat vscode-extensions.txt | xargs -n 1 code --install-extension; fi",
     "exportEXT": "code --list-extensions > vscode-extensions.txt",
-    "dev": "NODE_ENV=development nodemon index.js",
-    "prod": "NODE_ENV=production nodemon index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "NODE_ENV=development nodemon app.js",
+    "prod": "NODE_ENV=production nodemon app.js"
   },
   "repository": {
     "type": "git",
@@ -34,5 +33,9 @@
   },
   "engines": {
     "node": "^10"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "pug": "^2.0.4"
   }
 }
