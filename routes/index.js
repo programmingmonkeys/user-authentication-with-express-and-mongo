@@ -80,12 +80,12 @@ router.post('/register', async (req, res, next) => {
 
     // use schema's create method to insert
     try {
-      await User.create(userData)
-      // eslint-disable-next-line no-undef
+      const user = await User.create(userData)
+
       req.session.userId = user._id
       return res.redirect('/profile')
     } catch (error) {
-      return next(error)
+      return next('Register error:', error)
     }
   }
 

@@ -2,23 +2,9 @@ const path = require('path')
 const express = require('express')
 const mongoose = require('mongoose')
 const session = require('express-session')
+const MongoStore = require('connect-mongo')(session)
 
 const app = express()
-
-// use sessions for tracking logins
-app.use(
-  session({
-    secret: 'learning soemthing',
-    resave: true,
-    saveUninitialized: false,
-  }),
-)
-
-// make user ID available in templates
-app.use((req, res, next) => {
-  res.locals.currentUser = req.session.userId
-  next()
-})
 
 // mongodb connection
 mongoose.connect('mongodb://localhost:27017/bookworm', {
@@ -28,6 +14,24 @@ mongoose.connect('mongodb://localhost:27017/bookworm', {
 })
 const db = mongoose.connection
 db.on('error', console.error.bind(console, 'connection error:'))
+
+// use sessions for tracking logins
+app.use(
+  session({
+    secret: 'learning soemthing',
+    resave: true,
+    saveUninitialized: false,
+    store: new MongoStore({
+      mongooseConnection: db,
+    }),
+  }),
+)
+
+// make user ID available in templates
+app.use((req, res, next) => {
+  res.locals.currentUser = req.session.userId
+  next()
+})
 
 // parse incoming requests
 app.use(express.json())
