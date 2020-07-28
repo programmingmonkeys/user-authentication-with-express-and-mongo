@@ -8,7 +8,9 @@
     "importEXT": "if [ -f vscode-extensions.txt ]; then cat vscode-extensions.txt | xargs -n 1 code --install-extension; fi",
     "exportEXT": "code --list-extensions > vscode-extensions.txt",
     "dev": "NODE_ENV=development nodemon app.js",
-    "prod": "NODE_ENV=production nodemon app.js"
+    "prod": "NODE_ENV=production nodemon app.js",
+    "snyk-protect": "snyk protect",
+    "prepare": "npm run snyk-protect"
   },
   "repository": {
     "type": "git",
@@ -40,6 +42,8 @@
     "express": "^4.17.1",
     "express-session": "^1.17.0",
     "mongoose": "^5.7.7",
-    "pug": "^2.0.4"
-  }
+    "pug": "^2.0.4",
+    "snyk": "^1.316.1"
+  },
+  "snyk": true
 }
