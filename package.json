@@ -9,7 +9,7 @@
     "exportEXT": "code --list-extensions > vscode-extensions.txt",
     "dev": "NODE_ENV=development nodemon app.js",
     "prod": "NODE_ENV=production nodemon app.js",
-    "snyk-protect": "snyk protect",
+    "snyk-protect": "snyk-protect",
     "prepare": "npm run snyk-protect"
   },
   "repository": {
@@ -43,7 +43,7 @@
     "express-session": "^1.17.0",
     "mongoose": "^5.7.7",
     "pug": "^3.0.1",
-    "snyk": "^1.667.0"
+    "@snyk/protect": "latest"
   },
   "snyk": true
 }
